@@ -7,7 +7,6 @@ import multiprocessing as mp
 import cv2
 import matplotlib.pyplot as plt
 import numpy as np
-import openslide
 from PIL import Image
 import pdb
 import h5py
@@ -16,6 +15,16 @@ from wsi_core.wsi_utils import savePatchIter_bag_hdf5, initialize_hdf5_bag, coor
 import itertools
 from wsi_core.util_classes import isInContourV1, isInContourV2, isInContourV3_Easy, isInContourV3_Hard, Contour_Checking_fn
 from utils.file_utils import load_pkl, save_pkl
+
+OPENSLIDE_PATH = r'C:\Users\mario\Desktop\pycharm\openslide-win64\openslide-win64-20230414\bin'
+
+import os
+if hasattr(os, 'add_dll_directory'):
+    # Python >= 3.8 on Windows
+    with os.add_dll_directory(OPENSLIDE_PATH):
+        import openslide
+else:
+    import openslide
 
 Image.MAX_IMAGE_PIXELS = 933120000
 
